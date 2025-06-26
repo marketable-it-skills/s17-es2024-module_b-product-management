@@ -1,3 +1,83 @@
 {
-  "totalMark": 23.5
+  "totalMark": 17,
+  "wsosSections": {
+    "1": "Work organization and self-management"
+  },
+  "subCriterions": [
+    {
+      "name": "Website Layout",
+      "aspects": [
+        {
+          "type": "judgement",
+          "description": "Common website elements (header, navigation, footer) are responsive",
+          "wsosSection": 1,
+          "judgementScoreDescription": [
+            "All common elements are not responsive at all",
+            "At least one common element is responsive when changing between the defined viewports",
+            "All common elements look good on the defined viewports, but not between them",
+            "When scaling the browser between 360x640 and 1920x1080 (not just the defined viewports), all common elements always responds very well (no horizontal scrolling, everything readable, good breakpoints)"
+          ],
+          "maxMark": 0.5
+        },
+        {
+          "type": "judgement",
+          "description": "Pages (home, product, pricing, team) are responsive",
+          "judgementScoreDescription": [
+            "All pages are not responsive at all",
+            "At least one page is responsive when changing between the defined viewports",
+            "All pages look good on the defined viewports, but not between them",
+            "When scaling the browser between 360x640 and 1920x1080 (not just the defined viewports), all pages always responds very well (no horizontal scrolling, everything readable, good breakpoints)"
+          ],
+          "maxMark": 1
+        },
+        {
+          "type": "measurement",
+          "description": "Header, Navigation, and Footer are on all pages",
+          "extraDescription": "Header, Navigation, and Footer elements are on all pages and looking the same on all pages (except highlighting of the current active link is allowed)",
+          "requirement": "",
+          "calculation": {
+            "type": "options",
+            "options": [
+              {
+                "value": 0,
+                "description": "Header, Navigation, and Footer elements are not on all pages"
+              },
+              {
+                "value": 0.25,
+                "description": "Header, Navigation, and Footer elements are on all pages but not looking the same on all pages"
+              },
+              {
+                "value": 0.5,
+                "description": "Header, Navigation, and Footer elements are on all pages and looking the same on all pages (except highlighting of the current active link is allowed)"
+              }
+            ]
+          },
+          "maxMark": 0.5
+        }
+      ]
+    },
+    {
+      "name": "Website design",
+      "aspects": [
+        {
+          "type": "measurement",
+          "description": "Home page contains required information",
+          "extraDescription": "Product name, product image, links to product & pricing pages",
+          "requirement": "",
+          "calculation": {
+            "type": "pass-or-fail"
+          },
+          "maxMark": 0.5
+        }
+      ]
+    },
+    {
+      "name": "Standards",
+      "aspects": []
+    },
+    {
+      "name": "Organization",
+      "aspects": []
+    }
+  ]
 }
