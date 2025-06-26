@@ -50,6 +50,477 @@
           }
         }
       ]
+    },
+    {
+      "name": "Companies (Admin)",
+      "aspects": [
+        {
+          "type": "measurement",
+          "description": "Admin can view the list of companies",
+          "maxMark": 0.5,
+          "wsosSection": 5,
+          "extraDescription": "With column as described, deduct 0.25 per missing field. List include deactivated companies",
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "Admin can view a particular company after clicking on the companies list",
+          "maxMark": 0.25,
+          "wsosSection": 5,
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "Admin can view the associated products of a particular company in the company showing page",
+          "maxMark": 0.5,
+          "wsosSection": 5,
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "Admin can create companies",
+          "maxMark": 0.5,
+          "wsosSection": 5,
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "Admin can update companies information",
+          "maxMark": 0.5,
+          "wsosSection": 5,
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "Admin can mark a company as deactivated",
+          "maxMark": 0.5,
+          "wsosSection": 5,
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "All fields in companies are available for create",
+          "maxMark": 0.5,
+          "wsosSection": 5,
+          "extraDescription": "Deduct 0.25 per error.",
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "When a company is deactivated, all the associated products are marked as hidden",
+          "maxMark": 0.5,
+          "wsosSection": 5,
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "There is a separated list for listing deactivated companies",
+          "maxMark": 0.25,
+          "wsosSection": 5,
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "No one can delete a company on the web interface",
+          "maxMark": 0.25,
+          "wsosSection": 5,
+          "extraDescription": "Even if the company is deactivated, company cannot be deleted",
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Database",
+      "aspects": [
+        {
+          "type": "measurement",
+          "description": "DB-dump is provided and contains FK-constraints and correct columns",
+          "maxMark": 0.75,
+          "wsosSection": 5,
+          "extraDescription": "0.25 given if DB-dump is provided but not correctly containing FK-constraints",
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "ER diagram schema is provided",
+          "maxMark": 0.5,
+          "wsosSection": 2,
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "GTIN field is indexed in products table",
+          "maxMark": 0.25,
+          "wsosSection": 5,
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "judgement",
+          "description": "Database column type is reasonable defined",
+          "maxMark": 0.5,
+          "wsosSection": 5,
+          "judgementScoreDescription": [
+            "All columns use string type or text type",
+            "Columns are basically in their related types. But numbers for int/float may not be optimized for operation.",
+            "Columns are in their related types. For example, int, float, text, boolean, JSON. And are in proper length.",
+            "Columns are in their related types. And the length of each type matches the use case. Status column are easy to understand and maintained. Including straightforward column value, or with comments."
+          ]
+        },
+        {
+          "type": "judgement",
+          "description": "DB structure is normalized",
+          "maxMark": 0.5,
+          "wsosSection": 5,
+          "judgementScoreDescription": [
+            "Not normalized, a lot of redundant data/fields",
+            "Normalized with second normal form",
+            "Normalized with third normal form (partial)",
+            "Normalized with third normal form (full)"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GTIN Query and Verification",
+      "aspects": [
+        {
+          "type": "measurement",
+          "description": "Able to load the verification page",
+          "maxMark": 0.5,
+          "wsosSection": 5,
+          "extraDescription": "There is title, bulk-input text area, and a submit button. Deduct 0.25 per missing.",
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "Can input multiple GTIN code and submit to see result",
+          "maxMark": 0.25,
+          "wsosSection": 5,
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "The result page data is correct",
+          "maxMark": 0.5,
+          "wsosSection": 5,
+          "extraDescription": "Deduct 0.25 per error",
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "The result page shows an \"All corrects\" and green tick when no any GTIN verification error",
+          "maxMark": 0.5,
+          "wsosSection": 5,
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Products API",
+      "aspects": [
+        {
+          "type": "measurement",
+          "description": "The products API output can list JSON",
+          "maxMark": 0.25,
+          "wsosSection": 5,
+          "extraDescription": "GET /products.json",
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "The products list API is correct",
+          "maxMark": 1.0,
+          "wsosSection": 5,
+          "extraDescription": "all columns for products and data is correct. Deduct 0.25 per error",
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "The pagination of products list API is correct",
+          "maxMark": 0.5,
+          "wsosSection": 5,
+          "extraDescription": "All columns for pagination is correct. Deduct 0.25 per error",
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "A single product can be queried via JSON",
+          "maxMark": 0.25,
+          "wsosSection": 5,
+          "extraDescription": "GET /products/GTIN.json",
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "The single product fields are correct according to the Test Project",
+          "maxMark": 0.75,
+          "wsosSection": 5,
+          "extraDescription": "Deduct 0.25 per error",
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "The product API returns 404 when accessing a non-exist product",
+          "maxMark": 0.5,
+          "wsosSection": 5,
+          "extraDescription": "GET /products/GTIN.json that GTIN does not exist",
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "The product API returns 404 when accessing a hidden product",
+          "maxMark": 0.5,
+          "wsosSection": 5,
+          "extraDescription": "GET /products/GTIN.json when that product is marked as hidden",
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "The products list JSON allows querying by using keyword.",
+          "maxMark": 0.75,
+          "wsosSection": 5,
+          "extraDescription": "GET /products.json?query=KEYWORD. Search name, name in French, description, description in French. Deduct 0.25 per error",
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Products CRUD (Admin)",
+      "aspects": [
+        {
+          "type": "measurement",
+          "description": "Able to display products in a page via /products",
+          "maxMark": 0.25,
+          "wsosSection": 5,
+          "extraDescription": "No need to check if matching DB.",
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "The displayed products are dynamic loaded from database",
+          "maxMark": 0.5,
+          "wsosSection": 5,
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "A specific product can be viewed in web page by admin only /products/GTIN",
+          "maxMark": 0.5,
+          "wsosSection": 5,
+          "extraDescription": "By admin only, not for public. Deduct 0.25 if URL format not correct",
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "Products can be marked as hidden by admin",
+          "maxMark": 0.5,
+          "wsosSection": 5,
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "Hidden products can be permanently deleted",
+          "maxMark": 0.75,
+          "wsosSection": 5,
+          "extraDescription": "Only products that are already hidden can be operated. Deduct 0.25 if any products can be deleted.",
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "When accessing the /products/new URL, the create product form is present",
+          "maxMark": 0.25,
+          "wsosSection": 5,
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "Newly created product can be saved to database",
+          "maxMark": 0.5,
+          "wsosSection": 5,
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "The product management functions are only visible and operable after admin login",
+          "maxMark": 0.25,
+          "wsosSection": 5,
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "Accessing product management functions without login results in 401 error",
+          "maxMark": 0.5,
+          "wsosSection": 5,
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "Products has two languages of information, English and French",
+          "maxMark": 0.5,
+          "wsosSection": 5,
+          "extraDescription": "for the name, description fields",
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "The form submission checks if GTIN is 13 or 14 length",
+          "maxMark": 0.5,
+          "wsosSection": 5,
+          "extraDescription": "Server-side Form verification",
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "Admin can upload image",
+          "maxMark": 1.0,
+          "wsosSection": 5,
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "Admin can change image",
+          "maxMark": 1.0,
+          "wsosSection": 5,
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "Admin can remove the uploaded image",
+          "maxMark": 0.5,
+          "wsosSection": 5,
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "There is a default placeholder image when no image is uploaded",
+          "maxMark": 0.25,
+          "wsosSection": 5,
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Public facing product page",
+      "aspects": [
+        {
+          "type": "measurement",
+          "description": "A product's public page can be reached by accessing the /01/GTIN",
+          "maxMark": 0.25,
+          "wsosSection": 5,
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "The public product page shows the required field. And is in mobile layout.",
+          "maxMark": 0.75,
+          "wsosSection": 3,
+          "extraDescription": "company name, product name, product description, product image, weight, net content. Deduct 0.25 per missing",
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "Can choose between English and French for the public product page",
+          "maxMark": 0.25,
+          "wsosSection": 3,
+          "extraDescription": "The content changes accordingly",
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        },
+        {
+          "type": "measurement",
+          "description": "The lang attribute for the page, French part and English part is correctly configured",
+          "maxMark": 0.25,
+          "wsosSection": 3,
+          "calculation": {
+            "type": "pass-or-fail"
+          }
+        }
+      ]
     }
   ]
 }
