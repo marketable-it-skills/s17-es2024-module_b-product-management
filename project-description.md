@@ -154,7 +154,7 @@ Product data fields include:
     "current_page": 1,
     "total_pages": 5,
     "per_page": 10,
-    "next_page_url": "http://wsXX.worldskills.org/XX_module_b/products.json?page=2",
+    "next_page_url": "/products.json?page=2",
     "prev_page_url": null
   }
 }
@@ -168,6 +168,8 @@ Product data fields include:
 - Valid = GTIN exists and is not hidden
 - Results shown per GTIN
 - If all GTINs are valid, show a "All valid" message with a green tick
+
+![GTIN Bulk Verification Page Example](/assets/project-description-images/public-gtin-bulk-verification-page.jpg)
 
 #### Public Product Page
 
@@ -186,6 +188,8 @@ Product data fields include:
   - Net content weight and unit
 
 - Language toggle between English and French
+
+![Public Product Page Example](/assets/project-description-images/public-product-page.jpg)
 
 ### Instructions to the Competitor
 
@@ -219,4 +223,3 @@ This project will be assessed using Firefox Developer Edition.
 | 6            | GTIN Query and Verification | 1.75   |
 | 7            | Public facing product page  | 1.50   |
 | **Total**    |                             | 23.50  |
-
