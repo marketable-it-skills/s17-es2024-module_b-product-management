@@ -2,340 +2,221 @@
 
 ## Introduction
 
-We are going to create a management system for an office administrator (as known as "admin") to manage some made-in-France products. Products belongs to companies. The administrator will also manage the associated company data as well. Only admin can view and manage these companies and products listing and editing views.
+You are required to create a management system for an office administrator (referred to as "admin") to manage a set of made-in-France products. Products belong to companies, and the administrator must also manage the associated company data. Only the admin can access the listing and editing views for companies and products.
 
-Each product record comes with a unique identifier number, we call it Global Trade Item Number (GTIN). As a background information, the GTIN is developed by the international organization GS1.
+Each product record includes a unique identifier called the Global Trade Item Number (GTIN), developed by the international organization GS1.
 
-On the other hand, there are public-facing pages. They are:
+There are also public-facing pages:
 
-- Public GTIN bulk verification page
-- Public Product page
+- A public GTIN bulk verification page
+- A public product detail page
 
 ## General Description of Project and Tasks
 
-In this project, we create a companies and products management system for an admin to manage these madein-France products.
+This project involves building a management system for companies and products. It includes:
 
-It contains management web pages for listing and editing the records. And JSON API for querying and reading the data as well.
+- Admin web pages for listing and editing records
+- JSON APIs for reading and querying the data
 
 ## Requirements
 
-### Admin access
+### Admin Access
 
-Admin login page is at path \`/XX_module_b/login\`. The login page asks for a passphrase to proceed the authentication. A passphrase "admin" can be used to access the admin management system.
+The admin login page is available at the path `/login`. It requires a passphrase for authentication. Use "admin" as the valid passphrase.
 
-As a prototype product for a 3 hours' work. We do not require robust authentication. The management system uses simple passphrase-based checking.
+As this is a 3-hour prototype, a simple passphrase-based system is acceptable.
 
-The task is to create a companies and products management system.
-
-Given that the time constant, we focus on the prototype of the companies and products recording management and the proof-of-concept of displaying the product in a public page.
-
-Accessing product editing and management functions without login results in 401 error.
+Unauthenticated attempts to access admin pages should return a 401 error.
 
 ### Managing Companies
 
-Only admin can list and manage the companies.
+Admins can:
 
-Admin can click and view a particular company from the companies list.
+- View a list of companies
+- View individual company details
+- View associated products within each company page
+- Create and update company records
 
-In each company page, admin can view the associated products.
+Company data fields include:
 
-Admin can also create new companies or update existing companies’ information.
+- Company name
+- Company address
+- Company telephone number
+- Company email address
+- Owner:
+  - Name
+  - Mobile number
+  - Email address
+- Contact:
+  - Name
+  - Mobile number
+  - Email address
 
-Here are the data we would like to store and manage for each company:
+#### Deactivating Companies
 
-- company name
-- company address
-- company telephone number • company email address
-- owner information:
-- owner's name
-- owner's mobile number
-- owner's email address
-- contact information
-- contact's name
-- contact's mobile number
-- contact's email address
-
-#### Deactivating companies
-
-Admin can mark a company as deactivated.
-
-When a company is deactivated, all the associated products are marked as hidden.
-
-There should be a separated list for listing deactivated companies.
-
-No one should be able to delete any company records from the web interface.
+- Admins can mark a company as deactivated.
+- Deactivation hides all associated products.
+- Deactivated companies should appear in a separate list.
+- Deletion of company records via the web interface is not allowed.
 
 ### Managing Products
 
-There are different fields in each product, one worth remark is the GTIN.
+Each product has a GTIN (13 or 14 digit number, validated server-side).
 
-In this project, we simplify the GTIN to be any number with 13 or 14 digits. It could be any sequence of number, as long as they are unique for each product. Please validate this GTIN format after form submissions, via serverside validation.
+Admins can:
 
-#### Listing products
+- View a list of products at `/products`
+- Access a product detail page at `/products/[GTIN]`
+- Mark products as hidden
+- Delete hidden products
+- Create new products via `/products/new`
 
-Admin should be able to list and manage products.
+Product data fields include:
 
-When admin access the /XX_module_b/products, admin can see the list of all products.
+- Name (English and French)
+- GTIN
+- Description (English and French)
+- Brand name
+- Country of origin
+- Gross weight (with packaging)
+- Net content weight
+- Weight unit
 
-Admin can access and manage a particular product by clicking on the product record from the list, or by accessing the following path: /XX_module_b/products/\[GTIN\]. \[GTIN\] is the placeholder of the GTIN field.
+#### Product Image
 
-For example, given a product with GTIN 3000123456789, accessing the
-
-/XX_module_b/products/3000123456789 will be the product management page for this given product.
-
-#### Hiding and deleting products
-
-Admin can mark products as hidden.
-
-Or a product becomes hidden when the associated company is marked as deactivated.
-
-Admin can permanently delete hidden products.
-
-#### Creating new products
-
-Admin can view the create product form by accessing the /products/new, and can save newly created products to database.
-
-Products has two languages of information, English and French.
-
-For products, we have the following data to store:
-
-- name
-- name in French
-- GTIN (Global Trade Item Number)
-- description, can be multiple lines of text.
-- description in French
-- product brand name
-- product country of origin
-- product gross weight (with packaging)
-- product net content weight
-- product weight unit
-
-#### Product Images Uploading
-
-There could be one image associated to each product. Admin can upload and change this image, or admin can remove the uploaded images.
-
-When no image is uploaded, there is a default placeholder image.
+- Each product may have one associated image
+- Admins can upload, update, or delete the image
+- A placeholder image is shown if no image is uploaded
 
 ### JSON API Outputs
 
-The data can be output as JSON format when accessing GET /XX_module_b/products.json. When listing the products, the API will show a pagination structure.
+- GET `/products.json` lists products with pagination
+- GET `/products/[GTIN].json` returns single product data
+- 404 is returned for non-existent or hidden products
+- Keyword filtering: `/products.json?query=KEYWORD`
 
-A single product can be queried via JSON by GET /XX_module_b/products/\[GTIN\].json, where the GTIN is dynamic.
+#### Example Company JSON Output
 
-The product API returns 404 network status when accessing a non-exist product, or a hidden product.
-
-The products list JSON allows querying by using keyword, by GET
-
-/XX_module_b/products.json?query=KEYWORD. The list should show products with name, or name in French, or description, or description in French, that contains the KEYWORD.
-
-### JSON API Example Outputs
-
-Example company output
-
+```json
 {
-
-"companyName": "Euro Expo",
-
-"companyAddress": " Boulevard de l'Europe, 69680 Chassieu, France",
-
-"companyTelephone": "+33 1 41 56 78 00",
-
-"companyEmail": "<mail.customerservice.hdq@example.com>",
-
-"owner": {
-
-"name": "Benjamin Smith",
-
-"mobileNumber": "+33 6 12 34 56 78",
-
-"email": "<b.smith@example.com> "
-
-},
-
-"contact": {
-
-"name": "Marie Dubois",
-
-"mobileNumber": "+33 6 98 76 54 32",
-
-"email": "<m.dubois@example.com> "
-
+  "companyName": "Euro Expo",
+  "companyAddress": "Boulevard de l'Europe, 69680 Chassieu, France",
+  "companyTelephone": "+33 1 41 56 78 00",
+  "companyEmail": "mail.customerservice.hdq@example.com",
+  "owner": {
+    "name": "Benjamin Smith",
+    "mobileNumber": "+33 6 12 34 56 78",
+    "email": "b.smith@example.com"
+  },
+  "contact": {
+    "name": "Marie Dubois",
+    "mobileNumber": "+33 6 98 76 54 32",
+    "email": "m.dubois@example.com"
+  }
 }
+```
 
-}
+#### Example Product JSON Output
 
-Example product output
-
+```json
 {
-
-"name": {
-
-"en": "Organic Apple Juice",
-
-"fr": "Jus de pomme biologique"
-
-},
-
-"description": {
-
-"en": "Our organic apple juice is pressed from 100% fresh organic apples, with no added sugars or preservatives. Rich in vitamin C and antioxidants, it's an ideal choice for your daily healthy diet.",
-
-"fr": "Notre jus de pomme biologique est pressé à partir de 100% de pommes biologiques fraîches, sans sucre ajouté ni conservateurs. Riche en vitamine C et en antioxydants, c'est le choix idéal pour votre alimentation quotidienne saine."
-
-},
-
-"gtin": "03000123456789",
-
-"brand": "Green Orchard",
-
-"countryOfOrigin": "France",
-
-"weight": {
-
-"gross": 1.1,
-
-"net": 1.0,
-
-"unit": "L"
-
-},
-
-"company": {
-
-"companyName": "Euro Expo",
-
-"companyAddress": " Boulevard de l'Europe, 69680 Chassieu, France",
-
-"companyTelephone": "+33 1 41 56 78 00",
-
-"companyEmail": "<mail.customerservice.hdq@example.com>",
-
-"owner": {
-
-"name": "Benjamin Smith",
-
-"mobileNumber": "+33 6 12 34 56 78",
-
-"email": "<b.smith@example.com> "
-
-},
-
-"contact": {
-
-"name": "Marie Dubois",
-
-"mobileNumber": "+33 6 98 76 54 32",
-
-"email": "<m.dubois@example.com> "
-
+  "name": {
+    "en": "Organic Apple Juice",
+    "fr": "Jus de pomme biologique"
+  },
+  "description": {
+    "en": "Our organic apple juice is pressed from 100% fresh organic apples...",
+    "fr": "Notre jus de pomme biologique est pressé à partir de 100% de pommes biologiques..."
+  },
+  "gtin": "03000123456789",
+  "brand": "Green Orchard",
+  "countryOfOrigin": "France",
+  "weight": {
+    "gross": 1.1,
+    "net": 1.0,
+    "unit": "L"
+  },
+  "company": {
+    (same structure as company JSON above)
+  }
 }
+```
 
-}
+#### Example Products List JSON Output
 
-}
-
-#### Example Products JSON
-
+```json
 {
-
-"data": \[
-
-{
-
-(Same as single product JSON structure)
-
-},
-
-{
-
-(Same as single product JSON structure)
-
-},
-
-\],
-
-"pagination": {
-
-"current_page": 1,
-
-"total_pages": 5,
-
-"per_page": 10,
-
-"next_page_url": "<http://wsXX.worldskills.org/XX_module_b/products.json?page=2>", "prev_page_url": null
-
+  "data": [
+    { (Product JSON) },
+    { (Product JSON) }
+  ],
+  "pagination": {
+    "current_page": 1,
+    "total_pages": 5,
+    "per_page": 10,
+    "next_page_url": "http://wsXX.worldskills.org/XX_module_b/products.json?page=2",
+    "prev_page_url": null
+  }
 }
+```
 
-}
+### Public-Facing Pages
 
-### Public-facing Pages
+#### GTIN Bulk Verification Page
 
-There are two public facing pages, they are GTIN bulk verification page, and public product page.
-
-#### Public GTIN bulk verification page
-
-There is a page for bulk validating if given GTIN numbers are registered and valid. Any user can input multiple GTIN codes and submit to see the validation result.
-
-A GTIN is valid when it exists in the database and is not hidden.
-
-The page uses a text area to allow user to bulk inputting GTIN numbers. These numbers are separated by line breaks. Then the page should check each GTIN number and display a list of results, showing if each GTIN number is valid.
-
-If all the given GTIN numbers are valid, a separated "All valid" text and green tick is displayed on the top of the result page.
+- Users can submit multiple GTINs to check their validity
+- Valid = GTIN exists and is not hidden
+- Results shown per GTIN
+- If all GTINs are valid, show a "All valid" message with a green tick
 
 #### Public Product Page
 
-A product's public page can be reached by accessing the /XX_module_b/01/\[GTIN\]. Where the "01" is static.
+- URL format: `/01/[GTIN]` ("01" is static)
 
-The public product page shows the following required field. And is in mobile-friendly layout.
+- Mobile-friendly layout
 
-The required field to display: company name, product name, GTIN number, product description, product image, weight with unit, net content weight with unit.
+- Must display:
 
-User can choose between English and French for the public product page The lang attribute for the page, French part and English part is correctly configured.
+  - Company name
+  - Product name
+  - GTIN
+  - Product description
+  - Product image
+  - Gross weight and unit
+  - Net content weight and unit
+
+- Language toggle between English and French
 
 ### Instructions to the Competitor
 
-### Database and model creation consideration
+#### Database and Model Design
 
-We would like to store the companies and products data in database.
+- Use a database to store companies and products
+- Support multilingual product fields
+- Provide:
+  - Database dump (with FK constraints and valid schema)
+  - ER diagram
+  - Indexed GTIN field
+  - Preloaded sample data
 
-Please consider the flexibility of multi-lingual information for products.
+#### Hosting and Path Notes
 
-Please provide the database dump. The database dump should contain FK-constraints and correct columns. The columns type definition shall be reasonable.
-
-Please provide the ER diagram schema.
-
-Please consider the normal form of database.
-
-The GTIN field should be indexed.
-
-Some sample data has been provided. Please use them and have some data in database for easier assessment.
-
-### Other
-
-You may put your project in a sub-folder or different port. Please redirect to your destination from the path wsXX.worldskills.org/XX_module_b/
-
-The path mentioned in this document may be relative to your sub-folder. For example, when mentioning the login page as /XX_module_b/login — dependent to your actual setup — it may be actually /XX_module_b/public/login, or /XX_module_b/index.php/login or at different port such as <http://wsXX.worldskills.org:3000/XX_module_b/login>.
-
-Please also provide a file named \`expert_readme.txt\` to include executing guide. You must provide this file even if you use the default executing path.
-
-Note if you are using NodeJS, please be aware of the node_modules files for Windows (on workstation) and Linux (on server) is different. Using a wrong node_modules folder may result in unexpected error.
+- Project can be hosted in a subfolder or on a different port
 
 ## Assessment
 
-This project will be assessed by using Firefox Developer Edition web browser.
+This project will be assessed using Firefox Developer Edition.
 
 ## Mark distribution
 
-The table below outlines how marks are broken down and how they align with the WorldSkills
-Occupation Standards (WSOS). Please read the Technical Description for a full explanation of the
-WorldSkills Occupation Standards.
+| WSOS SECTION | Description                 | Points |
+| ------------ | --------------------------- | ------ |
+| 1            | Admin                       | 1.25   |
+| 2            | Database                    | 2.50   |
+| 3            | Companies (Admin)           | 4.25   |
+| 4            | Products CRUD (Admin)       | 7.75   |
+| 5            | Products API                | 4.50   |
+| 6            | GTIN Query and Verification | 1.75   |
+| 7            | Public facing product page  | 1.50   |
+| **Total**    |                             | 23.50  |
 
-| WSOS SECTION | Description                            | Points |
-| ------------ | -------------------------------------- | ------ |
-| 1            | Work organization and self-management  | 1      |
-| 2            | Communication and interpersonal skills | 1      |
-| 3            | Design Implementation                  | 15     |
-| 4            | Front-End Development                  | 0      |
-| 5            | Back-End Development                   | 0      |
-|              |                                        |        |
-| **Total**    |                                        | 17     |
