@@ -1,83 +1,370 @@
 {
-  "totalMark": 17,
+  "totalMark": 23.5,
   "wsosSections": {
-    "1": "Work organization and self-management"
+    "1": "Work organization and management",
+    "2": "Communication and interpersonal skills",
+    "3": "Design implementation",
+    "4": "Front-end development",
+    "5": "Back-end development"
   },
   "subCriterions": [
     {
-      "name": "Website Layout",
+      "name": "Admin",
       "aspects": [
         {
-          "type": "judgement",
-          "description": "Common website elements (header, navigation, footer) are responsive",
-          "wsosSection": 1,
-          "judgementScoreDescription": [
-            "All common elements are not responsive at all",
-            "At least one common element is responsive when changing between the defined viewports",
-            "All common elements look good on the defined viewports, but not between them",
-            "When scaling the browser between 360x640 and 1920x1080 (not just the defined viewports), all common elements always responds very well (no horizontal scrolling, everything readable, good breakpoints)"
-          ],
-          "maxMark": 0.5
-        },
-        {
-          "type": "judgement",
-          "description": "Pages (home, product, pricing, team) are responsive",
-          "judgementScoreDescription": [
-            "All pages are not responsive at all",
-            "At least one page is responsive when changing between the defined viewports",
-            "All pages look good on the defined viewports, but not between them",
-            "When scaling the browser between 360x640 and 1920x1080 (not just the defined viewports), all pages always responds very well (no horizontal scrolling, everything readable, good breakpoints)"
-          ],
-          "maxMark": 1
+          "type": "measurement",
+          "description": "Admin login page is at path /login",
+          "maxMark": 0.25,
+          "wsosSection": 5
         },
         {
           "type": "measurement",
-          "description": "Header, Navigation, and Footer are on all pages",
-          "extraDescription": "Header, Navigation, and Footer elements are on all pages and looking the same on all pages (except highlighting of the current active link is allowed)",
-          "requirement": "",
-          "calculation": {
-            "type": "options",
-            "options": [
-              {
-                "value": 0,
-                "description": "Header, Navigation, and Footer elements are not on all pages"
-              },
-              {
-                "value": 0.25,
-                "description": "Header, Navigation, and Footer elements are on all pages but not looking the same on all pages"
-              },
-              {
-                "value": 0.5,
-                "description": "Header, Navigation, and Footer elements are on all pages and looking the same on all pages (except highlighting of the current active link is allowed)"
-              }
-            ]
-          },
-          "maxMark": 0.5
+          "description": "Admin can sign-in by using the login passphrase",
+          "maxMark": 0.5,
+          "wsosSection": 5
+        },
+        {
+          "type": "measurement",
+          "description": "URL is reachable",
+          "maxMark": 0.25,
+          "wsosSection": 2,
+          "extraDescription": "/ and not showing blank page or error page"
+        },
+        {
+          "type": "measurement",
+          "description": "A file named expert_readme.txt is provided to include executing guide",
+          "maxMark": 0.25,
+          "wsosSection": 2,
+          "extraDescription": "filename is case insensitive. Any content is ok"
         }
       ]
     },
     {
-      "name": "Website design",
+      "name": "Companies (Admin)",
       "aspects": [
         {
           "type": "measurement",
-          "description": "Home page contains required information",
-          "extraDescription": "Product name, product image, links to product & pricing pages",
-          "requirement": "",
-          "calculation": {
-            "type": "pass-or-fail"
-          },
-          "maxMark": 0.5
+          "description": "Admin can view the list of companies",
+          "maxMark": 0.5,
+          "wsosSection": 5,
+          "extraDescription": "With column as described, deduct 0.25 per missing field. List include deactivated companies"
+        },
+        {
+          "type": "measurement",
+          "description": "Admin can view a particular company after clicking on the companies list",
+          "maxMark": 0.25,
+          "wsosSection": 5
+        },
+        {
+          "type": "measurement",
+          "description": "Admin can view the associated products of a particular company in the company showing page",
+          "maxMark": 0.5,
+          "wsosSection": 5
+        },
+        {
+          "type": "measurement",
+          "description": "Admin can create companies",
+          "maxMark": 0.5,
+          "wsosSection": 5
+        },
+        {
+          "type": "measurement",
+          "description": "Admin can update companies information",
+          "maxMark": 0.5,
+          "wsosSection": 5
+        },
+        {
+          "type": "measurement",
+          "description": "Admin can mark a company as deactivated",
+          "maxMark": 0.5,
+          "wsosSection": 5
+        },
+        {
+          "type": "measurement",
+          "description": "All fields in companies are available for create",
+          "maxMark": 0.5,
+          "wsosSection": 5,
+          "extraDescription": "Deduct 0.25 per error."
+        },
+        {
+          "type": "measurement",
+          "description": "When a company is deactivated, all the associated products are marked as hidden",
+          "maxMark": 0.5,
+          "wsosSection": 5
+        },
+        {
+          "type": "measurement",
+          "description": "There is a separated list for listing deactivated companies",
+          "maxMark": 0.25,
+          "wsosSection": 5
+        },
+        {
+          "type": "measurement",
+          "description": "No one can delete a company on the web interface",
+          "maxMark": 0.25,
+          "wsosSection": 5,
+          "extraDescription": "Even if the company is deactivated, company cannot be deleted"
         }
       ]
     },
     {
-      "name": "Standards",
-      "aspects": []
+      "name": "Database",
+      "aspects": [
+        {
+          "type": "measurement",
+          "description": "DB-dump is provided and contains FK-constraints and correct columns",
+          "maxMark": 0.75,
+          "wsosSection": 5,
+          "extraDescription": "0.25 given if DB-dump is provided but not correctly containing FK-constraints"
+        },
+        {
+          "type": "measurement",
+          "description": "ER diagram schema is provided",
+          "maxMark": 0.5,
+          "wsosSection": 2
+        },
+        {
+          "type": "measurement",
+          "description": "GTIN field is indexed in products table",
+          "maxMark": 0.25,
+          "wsosSection": 5
+        },
+        {
+          "type": "judgement",
+          "description": "Database column type is reasonable defined",
+          "maxMark": 0.5,
+          "wsosSection": 5
+        },
+        {
+          "type": "judgement",
+          "description": "DB structure is normalized",
+          "maxMark": 0.5,
+          "wsosSection": 5
+        }
+      ]
     },
     {
-      "name": "Organization",
-      "aspects": []
+      "name": "GTIN Query and Verification",
+      "aspects": [
+        {
+          "type": "measurement",
+          "description": "Able to load the verification page",
+          "maxMark": 0.5,
+          "wsosSection": 5,
+          "extraDescription": "There is title, bulk-input text area, and a submit button. Deduct 0.25 per missing."
+        },
+        {
+          "type": "measurement",
+          "description": "Can input multiple GTIN code and submit to see result",
+          "maxMark": 0.25,
+          "wsosSection": 5
+        },
+        {
+          "type": "measurement",
+          "description": "The result page data is correct",
+          "maxMark": 0.5,
+          "wsosSection": 5,
+          "extraDescription": "Deduct 0.25 per error"
+        },
+        {
+          "type": "measurement",
+          "description": "The result page shows an \"All corrects\" and green tick when no any GTIN verification error",
+          "maxMark": 0.5,
+          "wsosSection": 5
+        }
+      ]
+    },
+    {
+      "name": "Products API",
+      "aspects": [
+        {
+          "type": "measurement",
+          "description": "The products API output can list JSON",
+          "maxMark": 0.25,
+          "wsosSection": 5,
+          "extraDescription": "GET /products.json"
+        },
+        {
+          "type": "measurement",
+          "description": "The products list API is correct",
+          "maxMark": 1.0,
+          "wsosSection": 5,
+          "extraDescription": "all columns for products and data is correct. Deduct 0.25 per error"
+        },
+        {
+          "type": "measurement",
+          "description": "The pagination of products list API is correct",
+          "maxMark": 0.5,
+          "wsosSection": 5,
+          "extraDescription": "All columns for pagination is correct. Deduct 0.25 per error"
+        },
+        {
+          "type": "measurement",
+          "description": "A single product can be queried via JSON",
+          "maxMark": 0.25,
+          "wsosSection": 5,
+          "extraDescription": "GET /products/GTIN.json"
+        },
+        {
+          "type": "measurement",
+          "description": "The single product fields are correct according to the Test Project",
+          "maxMark": 0.75,
+          "wsosSection": 5,
+          "extraDescription": "Deduct 0.25 per error"
+        },
+        {
+          "type": "measurement",
+          "description": "The product API returns 404 when accessing a non-exist product",
+          "maxMark": 0.5,
+          "wsosSection": 5,
+          "extraDescription": "GET /products/GTIN.json that GTIN does not exist"
+        },
+        {
+          "type": "measurement",
+          "description": "The product API returns 404 when accessing a hidden product",
+          "maxMark": 0.5,
+          "wsosSection": 5,
+          "extraDescription": "GET /products/GTIN.json when that product is marked as hidden"
+        },
+        {
+          "type": "measurement",
+          "description": "The products list JSON allows querying by using keyword.",
+          "maxMark": 0.75,
+          "wsosSection": 5,
+          "extraDescription": "GET /products.json?query=KEYWORD. Search name, name in French, description, description in French. Deduct 0.25 per error"
+        }
+      ]
+    },
+    {
+      "name": "Products CRUD (Admin)",
+      "aspects": [
+        {
+          "type": "measurement",
+          "description": "Able to display products in a page via /products",
+          "maxMark": 0.25,
+          "wsosSection": 5,
+          "extraDescription": "No need to check if matching DB."
+        },
+        {
+          "type": "measurement",
+          "description": "The displayed products are dynamic loaded from database",
+          "maxMark": 0.5,
+          "wsosSection": 5
+        },
+        {
+          "type": "measurement",
+          "description": "A specific product can be viewed in web page by admin only /products/GTIN",
+          "maxMark": 0.5,
+          "wsosSection": 5,
+          "extraDescription": "By admin only, not for public. Deduct 0.25 if URL format not correct"
+        },
+        {
+          "type": "measurement",
+          "description": "Products can be marked as hidden by admin",
+          "maxMark": 0.5,
+          "wsosSection": 5
+        },
+        {
+          "type": "measurement",
+          "description": "Hidden products can be permanently deleted",
+          "maxMark": 0.75,
+          "wsosSection": 5,
+          "extraDescription": "Only products that are already hidden can be operated. Deduct 0.25 if any products can be deleted."
+        },
+        {
+          "type": "measurement",
+          "description": "When accessing the /products/new URL, the create product form is present",
+          "maxMark": 0.25,
+          "wsosSection": 5
+        },
+        {
+          "type": "measurement",
+          "description": "Newly created product can be saved to database",
+          "maxMark": 0.5,
+          "wsosSection": 5
+        },
+        {
+          "type": "measurement",
+          "description": "The product management functions are only visible and operable after admin login",
+          "maxMark": 0.25,
+          "wsosSection": 5
+        },
+        {
+          "type": "measurement",
+          "description": "Accessing product management functions without login results in 401 error",
+          "maxMark": 0.5,
+          "wsosSection": 5
+        },
+        {
+          "type": "measurement",
+          "description": "Products has two languages of information, English and French",
+          "maxMark": 0.5,
+          "wsosSection": 5,
+          "extraDescription": "for the name, description fields"
+        },
+        {
+          "type": "measurement",
+          "description": "The form submission checks if GTIN is 13 or 14 length",
+          "maxMark": 0.5,
+          "wsosSection": 5,
+          "extraDescription": "Server-side Form verification"
+        },
+        {
+          "type": "measurement",
+          "description": "Admin can upload image",
+          "maxMark": 1.0,
+          "wsosSection": 5
+        },
+        {
+          "type": "measurement",
+          "description": "Admin can change image",
+          "maxMark": 1.0,
+          "wsosSection": 5
+        },
+        {
+          "type": "measurement",
+          "description": "Admin can remove the uploaded image",
+          "maxMark": 0.5,
+          "wsosSection": 5
+        },
+        {
+          "type": "measurement",
+          "description": "There is a default placeholder image when no image is uploaded",
+          "maxMark": 0.25,
+          "wsosSection": 5
+        }
+      ]
+    },
+    {
+      "name": "Public facing product page",
+      "aspects": [
+        {
+          "type": "measurement",
+          "description": "A product's public page can be reached by accessing the /01/GTIN",
+          "maxMark": 0.25,
+          "wsosSection": 5
+        },
+        {
+          "type": "measurement",
+          "description": "The public product page shows the required field. And is in mobile layout.",
+          "maxMark": 0.75,
+          "wsosSection": 3,
+          "extraDescription": "company name, product name, product description, product image, weight, net content. Deduct 0.25 per missing"
+        },
+        {
+          "type": "measurement",
+          "description": "Can choose between English and French for the public product page",
+          "maxMark": 0.25,
+          "wsosSection": 3,
+          "extraDescription": "The content changes accordingly"
+        },
+        {
+          "type": "measurement",
+          "description": "The lang attribute for the page, French part and English part is correctly configured",
+          "maxMark": 0.25,
+          "wsosSection": 3
+        }
+      ]
     }
   ]
 }
