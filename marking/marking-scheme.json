@@ -1,5 +1,5 @@
 {
-  "totalMark": 23.5,
+  "totalMark": 23.25,
   "wsosSections": {
     "1": "Work organization and management",
     "2": "Communication and interpersonal skills",
@@ -35,16 +35,6 @@
           "maxMark": 0.25,
           "wsosSection": 2,
           "extraDescription": "/ and not showing blank page or error page",
-          "calculation": {
-            "type": "pass-or-fail"
-          }
-        },
-        {
-          "type": "measurement",
-          "description": "A file named expert_readme.txt is provided to include executing guide",
-          "maxMark": 0.25,
-          "wsosSection": 2,
-          "extraDescription": "filename is case insensitive. Any content is ok",
           "calculation": {
             "type": "pass-or-fail"
           }
