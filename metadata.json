@@ -1,9 +1,23 @@
 {
+  "id": 7,
   "name": "WS2024 S17 - Module B",
   "displayName": "Products Management",
   "description": "We are going to create a management system for an office administrator (as known as \"admin\") to manage some made-in-France products.",
   "url": "https://github.com/marketable-it-skills/s17-es2024-module_b-product-management",
-  "skillDomains": ["Web Technologies"],
+  "skillDomainIds": [1],
+  "languages": ["EN"],
   "competition": "WorldSkills Lyon 2024",
+  "estTime": 3,
+  "authors": [
+    {
+      "name": "Thomas Seng Hin Mak",
+      "url": "https://www.linkedin.com/in/makzan/"
+    },
+    {
+      "name": "Fong Hok Kin",
+      "url": ""
+    }
+  ],
+  "technologies": ["HTML", "PHP", "Node.js"],
   "tags": ["HTML", "CSS", "SSR", "JavaScript", "PHP", "Laravel", "Next.js"]
 }
